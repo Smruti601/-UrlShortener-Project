@@ -2,6 +2,9 @@
 
         import jakarta.persistence.*;
         import lombok.Data;
+        import jakarta.persistence.Entity;
+        import jakarta.persistence.Id;
+
 
         @Entity
         @Data
