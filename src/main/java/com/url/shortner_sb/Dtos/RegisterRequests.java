@@ -1,10 +1,9 @@
-package Dtos;
-
-import lombok.Data;
+package com.url.shortner_sb.Dtos;
 
 import java.util.Set;
+import lombok.Data;
 @Data
-public class RegisterRequest {
+public class RegisterRequests {
     private String username;
     private String email;
     private Set<String> role;

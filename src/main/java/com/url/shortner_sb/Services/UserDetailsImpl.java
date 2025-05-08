@@ -1,34 +1,29 @@
-package Services;
+package com.url.shortner_sb.Services;
 
-import Model.User;
+import com.url.shortner_sb.Model.User;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 @Data
-@Getter
-@Setter
 @NoArgsConstructor
 public class UserDetailsImpl implements UserDetails {
+
     private static final long serialVersionUID = 1L;
+
     private Long id;
     private String username;
     private String email;
-
     private String password;
-
     private Collection<? extends GrantedAuthority> authorities;
 
-
-    public UserDetailsImpl(Long id, String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    public UserDetailsImpl(Long id, String username, String email, String password,
+                           Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -36,10 +31,7 @@ public class UserDetailsImpl implements UserDetails {
         this.authorities = authorities;
     }
 
-    public UserDetailsImpl(Long id, String username, String email, String role) {
-    }
-
-    public static UserDetailsImpl build(User user){
+    public static UserDetailsImpl build(User user) {
         GrantedAuthority authority = new SimpleGrantedAuthority(user.getRole());
         return new UserDetailsImpl(
                 user.getId(),
@@ -51,17 +43,22 @@ public class UserDetailsImpl implements UserDetails {
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
     @Override
-    public String getPassword() {
-        return password;
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
     @Override
-    public String getUsername() {
-        return username;
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

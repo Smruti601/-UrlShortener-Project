@@ -1,6 +1,6 @@
-package Repository;
+package com.url.shortner_sb.Repository;
 
-import Model.User;
+import com.url.shortner_sb.Model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

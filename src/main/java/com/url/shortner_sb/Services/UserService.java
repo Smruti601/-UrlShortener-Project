@@ -1,8 +1,9 @@
-package Services;
+package com.url.shortner_sb.Services;
 
 
-import Model.User;
-import Repository.UserRepository;
+
+import com.url.shortner_sb.Model.User;
+import com.url.shortner_sb.Repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

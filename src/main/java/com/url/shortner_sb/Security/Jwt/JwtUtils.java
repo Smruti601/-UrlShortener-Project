@@ -1,6 +1,5 @@
-package Security.jwt;
-
-import Services.UserDetailsImpl;
+package com.url.shortner_sb.Security.Jwt;
+import com.url.shortner_sb.Services.UserDetailsImpl;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -74,3 +73,4 @@ public class JwtUtils {
         return Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));
     }
 }
+

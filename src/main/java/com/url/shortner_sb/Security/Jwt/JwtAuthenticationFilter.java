@@ -1,5 +1,4 @@
-package Security.jwt;
-
+package com.url.shortner_sb.Security.Jwt;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,7 +1,6 @@
-package Security.jwt.security;
-
-import Security.jwt.JwtAuthenticationFilter;
-import Services.UserDetailsServiceImpl;
+package com.url.shortner_sb.Security.Jwt.security;
+import com.url.shortner_sb.Security.Jwt.JwtAuthenticationFilter;
+import com.url.shortner_sb.Services.UserDetailsServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
@@ -42,14 +41,15 @@ public class WebSecurityConfig {
         return authProvider;
     }
 
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
     {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/{shortUrl}").permitAll()
-                .requestMatchers("/api/urls/**").authenticated()
-                .anyRequest().authenticated()
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/{shortUrl}").permitAll()
+                        .requestMatchers("/api/urls/**").authenticated()
+                        .anyRequest().authenticated()
                 );
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
@@ -57,3 +57,4 @@ public class WebSecurityConfig {
 
     }
 }
+
