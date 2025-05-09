@@ -1,4 +1,5 @@
 package com.url.shortner_sb.Controller;
+import com.url.shortner_sb.Dtos.LoginRequests;
 import com.url.shortner_sb.Model.User;
 import com.url.shortner_sb.Services.UserService;
 import lombok.AllArgsConstructor;
@@ -15,11 +16,18 @@ import com.url.shortner_sb.Dtos.RegisterRequests;
 public class AuthController {
     private UserService userService;
 
+    @PostMapping("/public/login")
+    public ResponseEntity<?> LoginUser(@RequestBody LoginRequests loginRequests) {
+        return ResponseEntity.ok(userService.authenticateUser(loginRequests));
+    }
+
     @PostMapping("/public/register")
     public ResponseEntity<?> registerUser(@RequestBody RegisterRequests registerRequest){
         User user = new User();
         user.setUsername(registerRequest.getUsername());
         user.setPassword(registerRequest.getPassword());
+        user.setEmail(registerRequest.getEmail());
+
         user.setRole("ROLE_USER");
         userService.registerUser(user);
         return ResponseEntity.ok("User Registered Successfully");
