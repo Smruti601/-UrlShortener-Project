@@ -1,19 +1,25 @@
 package com.url.shortner_sb.Services;
 
+import com.url.shortner_sb.Dtos.ClickEventDTO;
 import com.url.shortner_sb.Dtos.UrlMappingDTO;
 import com.url.shortner_sb.Model.UrlMapping;
 import com.url.shortner_sb.Model.User;
+import com.url.shortner_sb.Repository.ClickEventRepository;
 import com.url.shortner_sb.Repository.UrlMappingRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Nodes.collect;
 
 @Service
 public class UrlMappingService {
 
     private final UrlMappingRepository urlMappingRepository;
-
+    private ClickEventRepository clickEventRepository;
     public UrlMappingService(UrlMappingRepository urlMappingRepository) {
         this.urlMappingRepository = urlMappingRepository;
     }
@@ -51,5 +57,28 @@ public class UrlMappingService {
             shortUrl.append(characters.charAt(random.nextInt(characters.length())));
         }
         return shortUrl.toString();
+    }
+
+    public List<UrlMappingDTO> getUrlsByUser(User user) {
+        return urlMappingRepository.findByUser(user).stream()
+                .map(this::convertToDTO)
+                .toList();
+    }
+
+    public List<ClickEventDTO> getClickEventsByDate(String shorturls, LocalDateTime start, LocalDateTime end) {
+        UrlMapping urlMapping = urlMappingRepository.findByShorturl(shorturls);
+        if(urlMapping != null){
+                    return clickEventRepository.findByUrlMappingAndClickDateBetween(urlMapping,start,end).stream()
+                    .collect(Collectors.groupingBy(click -> click.getClickDate().toLocalDate().Collectors.counting()))
+                    .entrySet().stream()
+                    .map(entry -> {
+                                   ClickEventDTO.setClickDate(entry.getKey());
+                                   ClickEventDTO.setCount(entry.getValue());
+                                   return clickEventDTO;
+                            })
+                            .collect(Collectors.toList());
+        }
+
+        return null;
     }
 }
