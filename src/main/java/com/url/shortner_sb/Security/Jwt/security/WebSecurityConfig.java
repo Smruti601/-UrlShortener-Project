@@ -55,6 +55,8 @@ public class WebSecurityConfig {
                         .requestMatchers("/{shortUrl}").permitAll()
                         .requestMatchers("/api/urls/**").authenticated()
                         .anyRequest().authenticated()
+
+
                 );
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
