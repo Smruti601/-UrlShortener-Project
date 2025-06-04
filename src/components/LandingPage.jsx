@@ -5,7 +5,15 @@ import { motion } from "framer-motion";
 const LandingPage = () => {
 
   let desc = "Short your URLs with Linkito.Get your links covered.Say goodbye to ugly URLs and hello to clean, clickable magic.Built for speed, style, and link domination — welcome to Linkito.";
+// const LandingPage = () => {
+//   const navigate = useNavigate();
+//   const { token } = useStoreContext();
+//   console.log("TOKEN FROM LANDING PAGE: " + token);
 
+//   const dashBoardNavigateHandler = () => {
+
+//   };
+  
   return (
     <div className="min-h-[calc(100vh-64px)]  lg:px-14 sm:px-8 px-4">
       <div className="lg:flex-row flex-col    lg:py-5   pt-16   lg:gap-10 gap-8 flex justify-between items-center">
