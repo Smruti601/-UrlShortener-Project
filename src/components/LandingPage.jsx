@@ -1,18 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Card from './Card';
 import { motion } from "framer-motion";
+import { useNavigate } from 'react-router-dom';
+import {  useStoreContext } from '../ContextApi/ContextApi';
 
-const LandingPage = () => {
+
 
   let desc = "Short your URLs with Linkito.Get your links covered.Say goodbye to ugly URLs and hello to clean, clickable magic.Built for speed, style, and link domination — welcome to Linkito.";
-// const LandingPage = () => {
-//   const navigate = useNavigate();
-//   const { token } = useStoreContext();
-//   console.log("TOKEN FROM LANDING PAGE: " + token);
+  const LandingPage = () => {
+ 
+  const navigate = useNavigate();
+  const {token} = useStoreContext();
+    console.log("Token from landingpage : "+token);
+  const dashBoardNavigateHandler = () => {
 
-//   const dashBoardNavigateHandler = () => {
-
-//   };
+  };
   
   return (
     <div className="min-h-[calc(100vh-64px)]  lg:px-14 sm:px-8 px-4">
